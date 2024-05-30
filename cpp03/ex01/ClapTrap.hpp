@@ -6,7 +6,7 @@
 
 class ClapTrap
 {
-    private:
+    protected:
         std::string name;
         int hitpoints;
         int energyPoints;
@@ -14,50 +14,56 @@ class ClapTrap
     public:
         ClapTrap();
         ClapTrap(std::string name);
+        ClapTrap(const ClapTrap &copy);
+        ClapTrap &operator=(const ClapTrap &copy);
         ~ClapTrap();
-        virtual void attack(std::string const &target);
-        virtual void takeDamage(unsigned int amount);
-        virtual void beRepaired(unsigned int amount);
-        void set_hitpoints(int hitpoints)
-        {
-            this->hitpoints = hitpoints;
-        }
-        void set_energyPoints(int energyPoints)
-        {
-            this->energyPoints = energyPoints;
-        }
-        void set_attackDamage(int attackDamage)
-        {
-            this->attackDamage = attackDamage;
-        }
-        int get_hitpoints()
-        {
-            return this->hitpoints;
-        }
-        int get_energyPoints()
-        {
-            return this->energyPoints;
-        }
-        int get_attackDamage()
-        {
-            return this->attackDamage;
-        }
-        std::string get_name()
-        {
-            return this->name;
-        }
+        void attack(std::string const &target);
+        void takeDamage(unsigned int amount);
+        void beRepaired(unsigned int amount);
+        // void set_hitpoints(int hitpoints)
+        // {
+        //     this->hitpoints = hitpoints;
+        // }
+        // void set_energyPoints(int energyPoints)
+        // {
+        //     this->energyPoints = energyPoints;
+        // }
+        // void set_attackDamage(int attackDamage)
+        // {
+        //     this->attackDamage = attackDamage;
+        // }
+        // int hitpoints
+        // {
+        //     return this->hitpoints;
+        // }
+        // int energyPoints
+        // {
+        //     return this->energyPoints;
+        // }
+        // int attackDamage
+        // {
+        //     return this->attackDamage;
+        // }
+        // std::string name
+        // {
+            // return this->name;
+        // }
 
 };
 
 class ScavTrap : public ClapTrap
 {
+    private:
+        int gate;
     public:
         ScavTrap();
         ~ScavTrap();
+        ScavTrap(const ScavTrap &copy);
+        // override the assignment operator
+        ScavTrap &operator=(const ScavTrap &copy);
         ScavTrap(std::string name);
+
         void attack(std::string const &target);
-        void takeDamage(unsigned int amount); 
-        void beRepaired(unsigned int amount);
         void guardGate();
 };
 
