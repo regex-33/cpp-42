@@ -1,4 +1,5 @@
 #include "ClapTrap.hpp"
+#include "FragTrap.hpp"
 
 FragTrap::FragTrap(const FragTrap&copy) : ClapTrap(copy)
 {
@@ -16,26 +17,26 @@ FragTrap &FragTrap::operator=(const FragTrap &copy)
     return (*this);
 }
 
-FragTrap::FragTrap() : ClapTrap(), gate(0)
+FragTrap::FragTrap() : gate(0)
 {
-    std::cout << "FragTrap default constructor called" << std::endl;
+    std::cout << "FragTrap Constructor for " << name << " called" << std::endl; 
     hitpoints = 100;
     energyPoints = 50;
-    attackDamage = 20;
+    attackDamage = 30;
 }
 
 FragTrap::FragTrap(std::string name) : ClapTrap(name), gate(0)
 {
-    name = name + "_clap_name";
-    std::cout << "FragTrap constructor from name " << name << " called" << std::endl;
+    this->name = name + "_clap_name";
+    std::cout << "FragTrap constructor from name " << this->name << " called" << std::endl;
     hitpoints = 100;
     energyPoints = 50;
-    attackDamage = 20;
+    attackDamage = 30;
 }
 
 FragTrap::~FragTrap()
 {
-    std::cout << "FragTrap " << name << " destructor called" << std::endl;   // Remove the redeclaration of ClapTrap::~ClapTrap() here
+    std::cout << "FragTrap " << name << " destructor called" << std::endl;
 }
 
 

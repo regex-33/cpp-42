@@ -1,4 +1,5 @@
 #include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 ScavTrap::ScavTrap(const ScavTrap &copy) : ClapTrap(copy)
 {
@@ -66,7 +67,8 @@ int check_hitpoints_repair2(int hitpoints, std::string name, unsigned int amount
 
 ScavTrap::ScavTrap() : ClapTrap(), gate(0)
 {
-    std::cout << "ScavTrap default constructor called" << std::endl;
+    //std::cout << "ScavTrap default constructor called" << std::endl;
+    std::cout << "ScavTrap Constructor for " << name << " called" << std::endl; 
     hitpoints = 100;
     energyPoints = 50;
     attackDamage = 20;
