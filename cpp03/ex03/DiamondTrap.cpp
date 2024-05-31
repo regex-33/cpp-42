@@ -3,6 +3,12 @@
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
 
+/*
+GitHub Copilot: When a derived class is created, the constructor of the base class is called first. This is because the derived class is built upon the base class and it needs to initialize the base part of the object before it can construct the derived part.
+
+In your case, when you create a `DiamondTrap` object, the constructors of `ClapTrap`, `ScavTrap`, and `FragTrap` are called. This is because `DiamondTrap` is derived from these classes.
+*/
+
 DiamondTrap::DiamondTrap(): ClapTrap("default_clap_name")
 {
     this->_name = "default_diamond_name";
