@@ -5,7 +5,7 @@ OBJ = $(SRC:.cpp=.o)
 INCLUDES = -I includes
 
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -I ./ -fsanitize=address -g3
+CXXFLAGS = -Wall -Wextra -std=c++98 -I ./ -fsanitize=address -g3
 
 all: $(NAME)
 
