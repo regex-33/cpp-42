@@ -6,9 +6,8 @@ Dog::Dog()
     this->brain = new Brain();
     if (this->brain == NULL)
     {
-        perror("Brain allocation failed");
         std::cerr << "Exiting process now";
-        exit(1);
+        //exit(1);
     }
     std::cout << "Dog default constructor called" << std::endl;
 }

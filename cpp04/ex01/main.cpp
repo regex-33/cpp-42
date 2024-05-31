@@ -13,9 +13,8 @@ int main()
 			meta[i] = new Cat();
 			if (meta[i] == NULL)
 			{
-				perror("Cat allocation failed");
 				std::cerr << "Exiting process now";
-				exit(1);
+				//exit(1);
 			}
 		}
 		else
@@ -23,9 +22,8 @@ int main()
 			meta[i] = new Dog();
 			if (meta[i] == NULL)
 			{
-				perror("Dog allocation failed");
 				std::cerr << "Exiting process now";
-				exit(1);
+				//exit(1);
 			}
 		}
 	}
@@ -56,9 +54,8 @@ int main()
 	//  Cat *a = new Cat();
 	if (a == NULL)
 	{
-		perror("Allocation failed");
 		std::cerr << "Exiting the process now." << std::endl;
-		exit(1);
+		//exit(1);
 	}
 
 	a->setIdea(0, "I have to sniff it");
@@ -70,9 +67,8 @@ int main()
 //	 Cat *b = new Cat(*a);
 	if (b == NULL)
 	{
-		perror("Allocation failed");
 		std::cerr << "Exiting the process now." << std::endl;
-		exit(1);
+		//exit(1);
 	}
 	std::cout << std::endl;
 

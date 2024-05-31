@@ -6,9 +6,8 @@ Cat::Cat()
     this->brain = new Brain();
     if (this->brain == NULL)
     {
-        perror("Brain allocation failed");
         std::cerr << "Exiting process now";
-        exit(1);
+        //exit(1);
     }
     std::cout << "Cat default constructor called" << std::endl;
 }

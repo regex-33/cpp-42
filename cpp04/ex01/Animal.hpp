@@ -2,6 +2,11 @@
 #define ANIMAL_HPP
 
 #include <iostream>
+#include <string>
+#include <cstdlib>
+#include <cstdio>
+#include <cerrno>
+
 
 class Animal
 {

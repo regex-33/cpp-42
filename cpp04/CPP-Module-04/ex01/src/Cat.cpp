@@ -20,9 +20,8 @@ Cat::Cat(): Animal()
 	this->_brain = new Brain();
 	if (this->_brain == NULL)
 	{
-		perror("Cat Brain allocation failed");
 		std::cerr << "Exiting the process now." << std::endl;
-		exit(1);
+		//exit(1);
 	}
 }
 
@@ -50,9 +49,8 @@ Cat &Cat::operator=(const Cat &src)
 	this->_brain = new Brain();
 	if (this->_brain == NULL)
 	{
-		perror("Cat Brain allocation failed");
 		std::cerr << "Exiting the process now." << std::endl;
-		exit(1);
+		//exit(1);
 	}
 	*this->_brain = *src._brain;
 	return *this;

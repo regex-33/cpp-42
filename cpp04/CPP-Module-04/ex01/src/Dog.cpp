@@ -20,9 +20,8 @@ Dog::Dog(): Animal()
 	this->_brain = new Brain();
 	if (this->_brain == NULL)
 	{
-		perror("Dog Brain allocation failed");
 		std::cerr << "Exiting the process now." << std::endl;
-		exit(1);
+		//exit(1);
 	}
 }
 
@@ -50,9 +49,8 @@ Dog &Dog::operator=(const Dog &src)
 	this->_brain = new Brain();
 	if (this->_brain == NULL)
 	{
-		perror("Dog Brain allocation failed");
 		std::cerr << "Exiting the process now." << std::endl;
-		exit(1);
+		//exit(1);
 	}
 	*this->_brain = *src._brain;
 	return *this;
