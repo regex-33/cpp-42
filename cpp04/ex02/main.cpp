@@ -3,8 +3,19 @@
 
 int main()
 {
+	// uncomment the following to show that the Animal constructor is
+	// now only usable by the inheritant classes
+
+	// const Animal *animal = new Animal();
+	// animal->makeSound();
+
+	// or
+
+	// Animal test;
+	// return 0;
 	std::cout << "\033[34mConstructing\033[0m" << std::endl;
 	const Animal	*meta[10];
+	printf("\n\nmeta[10] has been created\n\n\n");
 	for (int i = 0; i < 10; i++)
 	{
 		if (i % 2)
@@ -50,7 +61,7 @@ int main()
 
 	std::cout << "\033[34mConstructing\033[0m" << std::endl;
 	Dog *a = new Dog();
-	// Cat *a = new Cat();
+	//  Cat *a = new Cat();
 	if (a == NULL)
 	{
 		std::cerr << "Exiting the process now." << std::endl;
@@ -63,7 +74,7 @@ int main()
 	a->setIdea(101, "some shit");
 
 	Dog *b = new Dog(*a);
-	// Cat *b = new Cat(*a);
+//	 Cat *b = new Cat(*a);
 	if (b == NULL)
 	{
 		std::cerr << "Exiting the process now." << std::endl;

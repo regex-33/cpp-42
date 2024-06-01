@@ -8,22 +8,27 @@
 #include <cerrno>
 
 
-class Animal
-{
-    protected:
-        std::string _type;
-    public:
-        Animal();
-        virtual ~Animal();
-        Animal(const Animal &copy);
-        Animal &operator=(const Animal &copy);
-        void setType(std::string type)
-        {
-            this->_type = type;
-        }
-        virtual void makeSound() const;
-        virtual std::string getType() const;
-};
+// class Animal
+// {
+//     protected:
+//         std::string _type;
+//     public:
+//         Animal();
+//         virtual ~Animal();
+//         Animal(const Animal &copy);
+//         Animal &operator=(const Animal &copy);
+//         void setType(std::string type)
+//         {
+//             this->_type = type;
+//         }
+//         virtual void makeSound() const;
+//         virtual std::string getType() const;
+// };
+/* 
+GitHub Copilot: Yes, the `Animal` class you've provided is an abstract base class. In C++, a class is considered abstract if it has at least one pure virtual function. In your class, both `makeSound()` and `getType()` are pure virtual functions (denoted by `= 0`), making `Animal` an abstract base class. 
+
+This means you cannot create instances of `Animal`, but you can create instances of classes derived from `Animal` that implement these pure virtual functions.
+*/
 
 class Brain
 {
@@ -40,7 +45,24 @@ class Brain
         void setIdea(int i, std::string idea);
 };
 
-class Dog : virtual public Animal
+
+class Animal
+{
+    protected:
+        std::string _type;
+    public:
+        Animal();
+        Animal(std::string type);
+        virtual ~Animal();
+        Animal(const Animal &copy);
+        Animal &operator=(const Animal &copy);
+        void setType(std::string type);
+        virtual void makeSound() const = 0;
+        virtual std::string getType() const = 0;
+};
+
+
+class Dog : virtual public Animal 
 {
     public:
         Dog();
