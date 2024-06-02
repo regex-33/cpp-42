@@ -19,7 +19,6 @@ Ice & Ice::operator=(Ice const & rhs)
     if (this != &rhs)
     {
         this->_type = rhs._type;
-        this->_xp = rhs._xp;
     }
     return *this;
 }

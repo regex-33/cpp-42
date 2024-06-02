@@ -41,7 +41,6 @@ int main()
 	std::cout << "\033[34mDeconstructing\033[0m" << std::endl;
 	for (int i = 0; i < 10; i++)
 		delete(meta[i]);
-//	delete(meta[0]);
 
 //THIS PART IS FOR TESTING DEEP COPY ↓
 

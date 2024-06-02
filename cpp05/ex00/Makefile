@@ -1,11 +1,11 @@
-NAME = Polymorphism 
+NAME = Bureaucrat 
 
-SRC = main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp brain.cpp
+SRC = main.cpp Bureaucrat.cpp 
 OBJ = $(SRC:.cpp=.o)
 INCLUDES = -I includes
 
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -I ./ -fsanitize=address -g3
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -I ./
 
 all: $(NAME)
 

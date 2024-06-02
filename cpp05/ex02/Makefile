@@ -1,6 +1,6 @@
-NAME = Polymorphism 
+NAME = Bureaucrat 
 
-SRC = main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp brain.cpp
+SRC = main.cpp Bureaucrat.cpp Form.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp
 OBJ = $(SRC:.cpp=.o)
 INCLUDES = -I includes
 

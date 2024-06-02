@@ -14,7 +14,6 @@ Dog::Dog()
 
 Dog::~Dog()
 {
-	delete this->brain;
     std::cout << "Dog destructor called" << std::endl;
 }
 

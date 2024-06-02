@@ -21,10 +21,7 @@ Cure::Cure(const Cure &copy)
 Cure &Cure::operator=(const Cure &copy)
 {
     if (this != &copy)
-    {
         _type = copy._type;
-        _xp = copy._xp;
-    }
     return *this;
 }
 

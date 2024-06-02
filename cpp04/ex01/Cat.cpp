@@ -42,7 +42,6 @@ void Cat::makeSound() const
 
 std::string Cat::getType() const
 {
-	delete this->brain;
     return (this->_type);
 }
 
