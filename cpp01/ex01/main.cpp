@@ -3,13 +3,15 @@
 int main(int argc, char **argv)
 {
     if (argc != 3)
-       return (std::cout << "Usage: ./zombieHorde [number of zombies] [name]" << std::endl, 1);
+       return (std::cerr << "Error: Usage: ./zombieHorde [number of zombies] [name]" << std::endl, 1);
+    if (argv[2] == 0 || argv[2][0] == '\0')
+        return (std::cerr << "Error: Name is either null or an empty string." << std::endl, 1);
     int N = std::atoi(argv[1]);
     if (N <= 0)
-        return (std::cout << "Number of zombies must be a positive integer" << std::endl, 1);
+        return (std::cerr << "Error: Number of zombies must be a positive integer" << std::endl, 1);
     Zombie* horde = zombieHorde(N, argv[2]);
     if (!horde)
-        return (std::cout << "Failed to create zombie horde" << std::endl, 1);
+        return (std::cerr << "Error: Failed to create zombie horde" << std::endl, 1);
 
     for (int i = 0; i < N; i++)
         horde[i].announce();

@@ -6,19 +6,24 @@
 #include <map>
 
 
+class Harl {
+public:
+    Harl();
+    ~Harl();
+    void complain(std::string level);
 
-class Harl 
-{
-    private:
-        void debug(void);
-        void info(void);
-        void warning(void);
-        void error(void);
-        std::map<std::string, void (Harl::*)(void)> _complaints;
-    public:
-        Harl();
-        ~Harl();
-        void complain(std::string level);
+private:
+    void debug();
+    void info();
+    void warning();
+    void error();
+    
+    /* Function pointer array*/
+    void (Harl::*functions[4])();
+    std::string levels[4];
+
+    int getIndex(std::string level);
 };
+
 
 #endif

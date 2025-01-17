@@ -1,11 +1,11 @@
 NAME = Polymorphism 
 
-SRC = main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp brain.cpp
+SRC_DIR = src/
+SRC = $(wildcard $(SRC_DIR)*.cpp)
 OBJ = $(SRC:.cpp=.o)
-INCLUDES = -I includes
-
+vpath = %.h ./Includes
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -I ./ -fsanitize=address -g3
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -I ./Includes
 
 all: $(NAME)
 

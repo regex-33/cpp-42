@@ -1,0 +1,64 @@
+docker: is trasfer application from evrairement to other one
+
+
+---------------------------
+to build image:
+=> docker build -t <name are img take> . 
+	===> . : search for Dockerfile in current directory to to use it to build img.
+
+---------------------------
+to list images:
+
+=> docker image ls
+
+---------------------------
+
+to list containers:
+
+=> docker ps
+
+---------------------------
+to run image in container:
+
+docker run --name <name are container take> -p <your port>:<container port> -d <image name>
+
+	==> -p : port forward
+	==> -d : for detach to d'not see output in terminal run it in background
+
+---------------------------
+to remove container
+
+docker rm <container name> -f
+
+---------------------------
+to excute command inside of container:
+=> docker exec -it <docker name> bash
+	==> -it : interactive terminal
+	==> bash : just command
+
+---------------------------
+to see logs of container:
+=> docker logs <container name>
+
+---------------------------
+docker hot reload:
+=> bind mount: docker run --name express-node-app-container -v <your project path>:<container path> -d -p 4000:4000 <img name> ======> this two way binding 
+	===> -v : volumes
+problem:
+if delete file in container workdir it's well be removed in local machine and also creat ...
+solution:
+=> anonymouse | one way bindint : docker run --name express-node-app-container -v <your project path>:<container path>:ro -d -p 4000:4000 <img name>
+	==>:ro : read only
+
+but we stell have probem when i remove node_modules it's removed in container and not work so the best way to handle this is to add files you want to be changed in container in special dir like src:
+
+=> docker run --name express-node-app-container -v <your project path>/src:<container path>/src:ro -d -p 4000:4000 <img name>
+
+---------------------------
+docker-compose : just utilty come with docker to help me to mange my containers esaely 
+---------------------------
+to pass environment variables to container:
+
+=> docker run --name express-node-app-container -v <your project path>/src:<container path>/src:ro --env-file ./.env -d -p 4000:4000 <img name>
+---------------------------
+---------------------------

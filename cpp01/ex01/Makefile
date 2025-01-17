@@ -1,9 +1,9 @@
-SRC = main.cpp zombieHorde.cpp Zombie.cpp
+SRC = main.cpp zombieHorde.cpp Zombie.cpp newZombie.cpp randomChump.cpp
 OBJ = $(SRC:.cpp=.o)
 CC = g++
 RM = rm -f
 
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic -I ./
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -I ./
 
 NAME = zombie
 

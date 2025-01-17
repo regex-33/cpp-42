@@ -1,11 +1,11 @@
-NAME = Polymorphism 
+NAME = Interface 
 
-SRC = main.cpp Character.cpp Cure.cpp Ice.cpp  Materias.cpp  MateriaSource.cpp 
+SRC_DIR = src/
+SRC = $(wildcard $(SRC_DIR)*.cpp)
 OBJ = $(SRC:.cpp=.o)
-INCLUDES = -I includes
-
+vpath = %.h ./Includes
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 $(INCLUDES) -fsanitize=address -g3 
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -I ./Includes# -fsanitize=address -g3
 
 all: $(NAME)
 

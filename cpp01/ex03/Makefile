@@ -3,7 +3,7 @@ OBJ = $(SRC:.cpp=.o)
 CC = g++
 RM = rm -f
 
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic -I./ 
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -I./ 
 
 NAME = Weapon 
 

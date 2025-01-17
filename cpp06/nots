@@ -1,0 +1,1 @@
+don't foget case of 0 ==> ./convert 0 -> should return in char 'Non disabled'

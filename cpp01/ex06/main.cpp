@@ -2,27 +2,27 @@
 
 
 /*
-Comment ""fall through "": This comment is used to indicate to the compiler and human readers that the fall-through from one case to the next is intentional. This is a common practice in C++98 to avoid warnings about implicit fall-through.
-
-Compatibility with C++98: By using this comment, you ensure that the code is compatible with the C++98 standard and avoid the need for C++11 or later features.*/
+Comment ""fall through "": This comment is used to indicate to the compiler and human readers that the fall-through from one case to the next is intentional. This is a common practice in C++98 to avoid warnings about implicit fall-hrough.
+*/
 
 int main(int argc, char **argv)
 {
     if (argc != 2)
         return (std::cout << "Usage: ./harl [DEBUG/INFO/WARNING/ERROR]" << std::endl, 1);
     Harl k;
-    switch (argv[1][0])
+    std::string input = std::string(argv[1]);
+    switch (k.getIndex(input))
     {
-        case 'D':
+        case 0:
             k.complain("DEBUG");
             /* fall through */
-        case 'I':
+        case 1:
             k.complain("INFO");
             /* fall through */
-        case 'W':
+        case 2:
             k.complain("WARNING");
             /* fall through */
-        case 'E':
+        case 3:
             k.complain("ERROR");
             break;
         default:
@@ -30,3 +30,5 @@ int main(int argc, char **argv)
     }
     return 0;
 }
+
+

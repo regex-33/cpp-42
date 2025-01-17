@@ -1,4 +1,5 @@
 #include "Weapon.hpp"
+#include "HumanB.hpp"
 
 HumanB::HumanB(std::string name) : name(name), weapon(NULL)
 {
@@ -17,5 +18,5 @@ void HumanB::attack() {
 }
 
 void HumanB::setWeapon(Weapon& weapon) {
-    this->weapon = &weapon; // Assign the address of the weapon object
+    this->weapon = &weapon;
 }
