@@ -1,0 +1,166 @@
+#include "../Includes/PmergeMe.hpp"
+
+// Parse numbers from command-line arguments
+std::vector<int> parseNumbersFromArgs(int argc, char *argv[]) {
+  std::vector<int> numbers;
+
+  for (int i = 1; i < argc; ++i) {
+    std::stringstream ss(argv[i]);
+    int num;
+
+    while (ss >> num) {
+      numbers.push_back(num);
+    }
+  }
+
+  return numbers;
+}
+
+// std::vector<int> jacobsthalSequence(int n) {
+//   std::vector<int> sequence;
+//   if (n == 0)
+//     return sequence;
+//
+//   // Generate Jacobsthal numbers until we have enough
+//   sequence.push_back(1); // J(2)
+//   int j = 3;
+//   while (true) {
+//     int next = sequence.back() + 2 * sequence[sequence.size() - 1];
+//     (void)next;
+//     if (sequence.size() >= static_cast<size_t>(n))
+//       break;
+//     sequence.push_back((pow(2, j) - (-1)) / 3); // Jacobsthal formula
+//     j++;
+//   }
+//
+//   // Generate insertion order
+//   std::cout << "Seq numbers: ";
+//   for (std::vector<int>::iterator it = sequence.begin(); it != sequence.end();
+//        ++it) {
+//     std::cout << sequence[*it] << " ";
+//   }
+//   std::cout << std::endl;
+//   std::vector<int> order;
+//   size_t i = 0;
+//   size_t prev = 0;
+//   while (order.size() < static_cast<size_t>(n)) {
+//     size_t curr = sequence[i];
+//     curr = std::min(curr, static_cast<size_t>(n));
+//     for (size_t num = curr; num > prev; --num) {
+//       if (num - 1 < static_cast<size_t>(n)) {
+//         order.push_back(num - 1);
+//       }
+//     }
+//     prev = curr;
+//     ++i;
+//   }
+//
+//   return order;
+// }
+
+  std::vector<int> order;
+  size_t i = 0;
+  size_t prev = 0;
+
+  while (order.size() < static_cast<size_t>(n)) {
+    size_t curr = sequence[i];
+    // curr = std::min(curr, static_cast<size_t>(n));
+
+    for (size_t num = curr; num > prev; --num) {
+      if (num - 1 < static_cast<size_t>(n)) {
+        order.push_back(num - 1);
+      }
+    }
+
+    prev = curr;
+    ++i;
+  }
+
+  return order;
+// Insert elements from `Lowest` into `Largest` using binary search
+void insertElements(std::vector<int> &Largest, const std::vector<int> &Lowest,
+                    const std::vector<int> &seq) {
+  for (std::vector<int>::const_iterator it = seq.begin(); it != seq.end();
+       ++it) {
+    if (*it < static_cast<int>(Lowest.size())) { // Ensure the index is valid
+      std::vector<int>::iterator pos =
+          std::lower_bound(Largest.begin(), Largest.end(), Lowest[*it]);
+      Largest.insert(pos, Lowest[*it]);
+    }
+  }
+}
+
+// Ford-Johnson algorithm implementation
+void Pmergeme::VectorMerge(int argc, char **argv) {
+  this->MergeVector = parseNumbersFromArgs(argc, argv);
+
+  // If the number of elements is odd, handle the last element separately
+  bool hasOddElement = (MergeVector.size() % 2 != 0);
+  int oddElement = hasOddElement ? MergeVector.back() : 0;
+
+  // Create pairs and sort them
+  for (unsigned long i = 0; i + 1 < MergeVector.size(); i += 2) {
+    if (MergeVector[i] > MergeVector[i + 1]) {
+      this->VectorPairs.push_back(
+          std::make_pair(MergeVector[i], MergeVector[i + 1]));
+    } else {
+      this->VectorPairs.push_back(
+          std::make_pair(MergeVector[i + 1], MergeVector[i]));
+    }
+  }
+
+  // Sort pairs by the larger element
+  std::sort(VectorPairs.begin(), VectorPairs.end());
+
+  // Populate `Largest` and `Lowest` vectors
+  for (VectorOfPairsIterator it = VectorPairs.begin(); it != VectorPairs.end();
+       ++it) {
+    this->Largest.push_back(it->first);
+    this->Lowest.push_back(it->second);
+  }
+
+  // Sort `Largest`
+  std::sort(this->Largest.begin(), this->Largest.end());
+
+  // Generate Jacobsthal sequence
+  std::vector<int> seq = jacobsthalSequence(this->Lowest.size());
+
+  // Insert the first element of Lowest into Largest
+  // if (!this->Lowest.empty()) {
+  //   if (std::find(this->Largest.begin(), this->Largest.end(),
+  //                 this->Lowest[0]) == this->Largest.end()) {
+  //     this->Largest.insert(this->Largest.begin(), this->Lowest[0]);
+  //   }
+  // }
+  // Insert remaining elements from `Lowest` into `Largest`
+  insertElements(this->Largest, this->Lowest, seq);
+
+  // If there was an odd element, insert it into `Largest`
+  std::cout << "Seq numbers: ";
+  for (std::vector<int>::iterator it = seq.begin(); it != seq.end(); ++it) {
+    std::cout << seq[*it] << " ";
+  }
+  std::cout << std::endl;
+  std::cout << "----- Pairs -----" << std::endl;
+  printVectorPairs();
+  // std::sort(this->Largest.begin(), this->Largest.end());
+  std::cout << "----- Lowest -----" << std::endl;
+  PrintLowest();
+  std::cout << "----- Largest -----" << std::endl;
+  PrintLargest();
+  // exit(9);
+  if (hasOddElement) {
+    std::vector<int>::iterator pos = std::lower_bound(
+        this->Largest.begin(), this->Largest.end(), oddElement);
+    this->Largest.insert(pos, oddElement);
+  }
+
+  // Print the sorted vector
+  std::cout << "Sorted numbers: ";
+  for (std::vector<int>::iterator it = this->Largest.begin();
+       it != this->Largest.end(); ++it) {
+    std::cout << *it << " ";
+  }
+  std::cout << std::endl;
+  exit(9);
+}
