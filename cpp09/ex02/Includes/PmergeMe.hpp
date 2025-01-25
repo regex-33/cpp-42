@@ -2,6 +2,9 @@
 #ifndef PMERGEME_HPP
 #define PMERGEME_HPP
 
+#include <iostream>
+#include <ctime>
+#include <iomanip>
 #include <algorithm>
 #include <cctype>
 #include <climits>
@@ -21,28 +24,39 @@
 
 typedef std::pair<int, int> IntPair;
 
+// Vector
 typedef std::vector<int> IntVector;
 typedef std::vector<IntPair> VectorOfPairs;
 
+// Vector iterators
 typedef IntVector::iterator IntVectorIterator;
 typedef VectorOfPairs::iterator VectorOfPairsIterator;
 
 
+// Deque
+typedef std::deque<int> IntDeque;
 typedef std::deque<IntPair> DequeOfPairs;
+
+// Deque iterators
+typedef IntDeque::iterator IntDequeIterator;
+typedef DequeOfPairs::iterator DequeOfPairsIterator;
+
 
 class Pmergeme {
 private:
   // Vector things
-  std::vector<int> MergeVector;
+  IntVector MergeVector;
   VectorOfPairs VectorPairs;
 
-  std::vector<int> Largest;
-  std::vector<int> Lowest;
+  IntVector VLargest;
+  IntVector VLowest;
 
   // deque things
-  std::deque<int> MergeDeque;
+  IntDeque MergeDeque;
   DequeOfPairs DequePairs;
 
+  IntDeque DLargest;
+  IntDeque DLowest;
 public:
   ~Pmergeme() {}
   Pmergeme() {}
@@ -53,11 +67,28 @@ public:
     (void)other;
     return *this;
   }
-  // void VectorMerge(std::string &input);
+  // Vector 
   void VectorMerge(int argc, char **argv);
-std::vector<int> MinsOne(const std::vector<int> &sequence);
-std::vector<int> fillMissingNumbers(const std::vector<int> &inputSequence);
-std::vector<int> jacobsthalsequence(unsigned long n);
+  IntVector MinsOne(const IntVector &sequence);
+  IntVector fillMissingNumbers(const IntVector &inputSequence);
+  IntVector VectorjacobsthalSequence(unsigned long n);
+  void VparseNumbersFromArgs(int argc, char **argv);
+  unsigned int getMergeVectorSize(){
+    return this->MergeVector.size();
+  }
+  // Deque
+
+  void DparseNumbersFromArgs(int argc, char **argv);
+  void DequeMerge(int argc, char **argv);
+  IntDeque MinsOne(const IntDeque &sequence);
+  IntDeque fillMissingNumbers(const IntDeque &inputSequence);
+  IntDeque DequejacobsthalSequence(unsigned long n);
+  unsigned int getMergeDequeSize(){
+    return this->MergeVector.size();
+  }
+
+
+
   // --------------------------------------------
   // --------------------------------------------
   // Vector Help Methods
@@ -72,6 +103,23 @@ std::vector<int> jacobsthalsequence(unsigned long n);
     std::cout << std::endl;
   }
 
+  void PrintDeque() {
+    std::cout << "Parsed numbers: ";
+    for (unsigned long i = 0; i < MergeDeque.size(); i++) {
+      std::cout << MergeDeque[i] << " ";
+    }
+    std::cout << std::endl;
+  }
+void printDequePairs() {
+    // Iterate through the vector using a standard for loop with iterator
+    std::cout << "Deque Pairs numbers: ";
+    for (DequeOfPairs::const_iterator it = DequePairs.begin();
+         it != DequePairs.end(); ++it) {
+      std::cout << "(" << it->first << ", " << it->second << ") ";
+    }
+    std::cout << std::endl;
+  }
+
   void printVectorPairs() {
     // Iterate through the vector using a standard for loop with iterator
     for (VectorOfPairs::const_iterator it = VectorPairs.begin();
@@ -80,17 +128,33 @@ std::vector<int> jacobsthalsequence(unsigned long n);
     }
     std::cout << std::endl;
   }
-  void PrintLargest() {
-    std::cout << "Largest numbers: ";
-    for (unsigned long i = 0; i < Largest.size(); i++) {
-      std::cout << Largest[i] << " ";
+  void VPrintLargest() {
+    std::cout << "VLargest numbers: ";
+    for (unsigned long i = 0; i < VLargest.size(); i++) {
+      std::cout << VLargest[i] << " ";
     }
     std::cout << std::endl;
   }
-  void PrintLowest() {
-    std::cout << "Lowest numbers: ";
-    for (unsigned long i = 0; i < Lowest.size(); i++) {
-      std::cout << Lowest[i] << " ";
+  void DPrintLargest() {
+    std::cout << "DLargest numbers: ";
+    for (unsigned long i = 0; i < DLargest.size(); i++) {
+      std::cout << DLargest[i] << " ";
+    }
+    std::cout << std::endl;
+  }
+
+  void DPrintLowest() {
+    std::cout << "DLowest numbers: ";
+    for (unsigned long i = 0; i < DLowest.size(); i++) {
+      std::cout << DLowest[i] << " ";
+    }
+    std::cout << std::endl;
+  }
+
+  void VPrintLowest() {
+    std::cout << "VLowest numbers: ";
+    for (unsigned long i = 0; i < VLowest.size(); i++) {
+      std::cout << VLowest[i] << " ";
     }
     std::cout << std::endl;
   }
